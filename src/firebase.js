@@ -18,6 +18,7 @@ if (process.env.NODE_ENV === "development") {
   window.firebase = firebase;
 }
 
-export const firestore = firebase.firestore();
+const firestore = firebase.firestore();
 
+export { firestore };
 export default firebase;
