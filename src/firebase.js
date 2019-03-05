@@ -1,4 +1,5 @@
 import firebase from "firebase/app";
+import "firebase/firestore";
 
 const config = {
   apiKey: "AIzaSyDNIW6ZEGR6bbfm3xhrEDI1-S73i1gfbzA",
@@ -16,5 +17,7 @@ if (process.env.NODE_ENV === "development") {
   //This is just to learn and play with the firebase in window object.
   window.firebase = firebase;
 }
+
+export const firestore = firebase.firestore();
 
 export default firebase;
