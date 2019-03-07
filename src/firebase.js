@@ -19,6 +19,7 @@ if (process.env.NODE_ENV === "development") {
   window.firebase = firebase;
 }
 
+//TODO: Break this function up into create profile and return profile
 export const createUserProfileDocument = async (user, additionalData) => {
   if (!user) {
     console.log("User is required for createUserProfileDocument");
@@ -54,12 +55,7 @@ export const getUserDocument = async uid => {
   if (!uid) return null;
 
   try {
-    const userDocument = await firestore
-      .collection("users")
-      .doc(uid)
-      .get();
-
-    return { uid, ...userDocument.data() };
+    return firestore.collection("users").doc(uid);
   } catch (error) {
     console.error("Error fetching user", error.message);
   }
