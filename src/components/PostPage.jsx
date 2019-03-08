@@ -5,6 +5,7 @@ import Post from "./Post";
 import Comments from "./Comments";
 import { firestore } from "../firebase";
 import { collectIdsAndDocs } from "../utilities";
+import withUser from "./withUser";
 
 class PostPage extends Component {
   state = { post: null, comments: [] };
@@ -42,14 +43,17 @@ class PostPage extends Component {
   };
 
   createComment = comment => {
+    const { user } = this.props;
+
     this.commentsRef.add({
-      ...comment
+      ...comment,
+      user
     });
   };
 
   render() {
     const { post, comments } = this.state;
-
+    console.log(this.props);
     return (
       <section>
         {post && <Post {...post} />}
@@ -59,4 +63,4 @@ class PostPage extends Component {
   }
 }
 
-export default withRouter(PostPage);
+export default withRouter(withUser(PostPage));
